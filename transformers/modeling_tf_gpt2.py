@@ -90,6 +90,7 @@ class TFAttention(tf.keras.layers.Layer):
     def _attn(self, inputs, training=False):
         q, k, v, attention_mask, head_mask = inputs
         # q, k, v have shape [batch, heads, sequence, features]
+        print("MatMul")
         w = tf.matmul(q, k, transpose_b=True)
         if self.scale:
             dk = tf.cast(tf.shape(k)[-1], tf.float32) # scale attention_scores
